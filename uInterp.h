@@ -77,7 +77,7 @@
 /* Command table data structure */
 typedef struct 
 {
-	int (*pfCmd)(void);
+    int (*pfCmd)(void);
     char 			        *pName;
     char			        *pDescription;
     char			        *pUsage;
@@ -99,7 +99,7 @@ uInterpDtor(
 /* Lookup and excute the command on line completion */
 int
 uInterpExecute(
-	char 	                *pLine
+    char 	                *pLine
     );
 
 /* Return the number of arguments, command name is always here */

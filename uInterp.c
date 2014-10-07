@@ -30,9 +30,9 @@
 
 typedef struct Interp_T
 {
-	const uInterpCmd_T		*pExtCmds;              /* Enternal command table                   */
+    const uInterpCmd_T		*pExtCmds;              /* Enternal command table                   */
     unsigned int            uCmdCount;              /* Number of commands in the table          */
-	char                    *pStart;                /* Start of command less white spaces       */
+    char                    *pStart;                /* Start of command less white spaces       */
 } uInterp_T;
 
 typedef enum 
@@ -49,9 +49,9 @@ typedef enum
 static
 void
 uInterpTrimTrailingChars(
-	char            *pString,
-	const char      *pChars
-	);
+    char            *pString,
+    const char      *pChars
+    );
 
 static
 void
@@ -100,16 +100,16 @@ uInterpStringToLong(
 static
 int
 uInterpCharToDecimal(
-	char    c,
-	char    *pDec
-	);
+    char    c,
+    char    *pDec
+    );
 
 static
 int
 uInterpCharToHex(
-	char    c,
-	char   *pHex
-	);
+    char    c,
+    char   *pHex
+    );
 
 /******************************************************************************/
 
@@ -145,8 +145,8 @@ uInterpDtor(
  */
 int
 uInterpExecute(
-	char 	                *pLine
-	)
+    char 	                *pLine
+    )
 {
     int Retval = UINTERP_EFAIL;
     const uInterpCmd_T *pCmd;
@@ -209,7 +209,7 @@ uInterpArgs(
         CHECK_RETVAL(Retval, ExitOnFailure);
                     
         Value = uInterpStringToLong(nBuffer, NULL, 0);
-		
+        
         Retval = (Value <= UINTERP_MAX_INT8) ? UINTERP_OK : UINTERP_ERANGE;
         CHECK_RETVAL(Retval, ExitOnFailure);
                     
@@ -225,7 +225,7 @@ uInterpArgs(
         CHECK_RETVAL(Retval, ExitOnFailure);
                     
         Value = uInterpStringToLong(nBuffer, NULL, 0);
-		
+        
         Retval = (Value <= UINTERP_MAX_INT16) ? UINTERP_OK : UINTERP_ERANGE;
         CHECK_RETVAL(Retval, ExitOnFailure);
                     
@@ -241,7 +241,7 @@ uInterpArgs(
         CHECK_RETVAL(Retval, ExitOnFailure);
                     
         Value = uInterpStringToLong(nBuffer, NULL, 0);
-		
+        
         Retval = (Value <= UINTERP_MAX_INT32) ? UINTERP_OK : UINTERP_ERANGE;
         CHECK_RETVAL(Retval, ExitOnFailure);
                     
@@ -273,7 +273,7 @@ uInterpArgs(
 
 ExitOnFailure:
                     
-	return Retval;
+    return Retval;
 }
 
 /******************************************************************************/
@@ -585,9 +585,9 @@ uInterpGetArgs(
 /* Convert a character to a hex digit */
 int
 uInterpCharToHex(
-	char    c,
-	char   *pHex
-	)
+    char    c,
+    char   *pHex
+    )
 {
     int Retval = UINTERP_OK;
 
@@ -614,9 +614,9 @@ uInterpCharToHex(
 /* Convert a character to a decimal digit */
 int
 uInterpCharToDecimal(
-	char    c,
-	char    *pDec
-	)
+    char    c,
+    char    *pDec
+    )
 {
     int Retval = UINTERP_OK;
 
@@ -646,7 +646,7 @@ uInterpStrToBin(
     int i;
 
     Retval = pStr && pBuf && Len ? UINTERP_OK : UINTERP_EFAIL;
-   	CHECK_RETVAL(Retval, ExitOnFailure);
+    CHECK_RETVAL(Retval, ExitOnFailure);
 
     if (pLen)
     {
@@ -668,15 +668,15 @@ uInterpStrToBin(
 
         /* Did we convert any characters */
         Retval = pStr != pNext ? UINTERP_OK : UINTERP_EFAIL;
-   	    CHECK_RETVAL(Retval, ExitOnFailure);
+        CHECK_RETVAL(Retval, ExitOnFailure);
 
         /* Are we in byte range */
         Retval = (val <= 255) ? UINTERP_OK : UINTERP_EFAIL;
-   	    CHECK_RETVAL(Retval, ExitOnFailure);
+        CHECK_RETVAL(Retval, ExitOnFailure);
 
         /* Is there room in the binary buffer */
         Retval = (i < Len) ? UINTERP_OK : UINTERP_EFAIL;
-   	    CHECK_RETVAL(Retval, ExitOnFailure);
+        CHECK_RETVAL(Retval, ExitOnFailure);
 
         pBuf[i] = (char)val;
         i = i + 1;
