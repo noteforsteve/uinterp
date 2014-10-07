@@ -1,0 +1,22 @@
+CC=cl
+CFLAGS=/Zi /Od /c /W4 /WX /DDEBUG /DWINDOWS /D_CRT_SECURE_NO_WARNINGS
+
+LINK=link
+LFLAGS=/NOLOGO /DEBUG 
+
+all: uInterp.exe
+
+OBJS=uInterp.obj\
+	Main.obj
+
+uInterp.obj : uInterp.h uInterp.c
+	$(CC) $(CFLAGS) uInterp.c
+
+Main.obj : Main.h Main.c
+	$(CC) $(CFLAGS) Main.c
+
+uInterp.exe: $(OBJS)
+    $(LINK) $(LFLAGS) $** /OUT:$@
+
+clean:
+    del *.exe *.obj *.ilk *.manifest *.pdb *.suo
