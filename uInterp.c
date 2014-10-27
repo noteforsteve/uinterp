@@ -362,6 +362,7 @@ uInterpFindCommand(
  * 1. Over flow checking / detection is not done
  * 2. Negative values are not supported
  * 3. Only radix 10 and radix 16 are supported 
+ * 4. Invalid character in radix not reported to caller
  *
  */
 unsigned long
@@ -399,6 +400,7 @@ uInterpStringToLong(
         {                                
             if (uInterpCharToDecimal(*p, &b) != UINTERP_OK)
             {
+                Value = 0xDEADBEEF;
                 break;
             }
         }
@@ -406,6 +408,7 @@ uInterpStringToLong(
         {
             if (uInterpCharToHex(*p, &b) != UINTERP_OK)
             {
+                Value = 0xDEADBEEF;
                 break;
             }        
         }     
